@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import {NavBar, WingBlank, InputItem, List, WhiteSpace, Radio, Button} from "antd-mobile"
 import Logo from '../../components/logo/logo'
+import { connect } from "react-redux"
 
-import {registerAPI} from "../../api/user_api"
+import { register } from "../../redux/actions"
 
 const ListItem = List.Item
 
-export default class Register extends Component {
+class Register extends Component {
     state = {
         username: '',
         password: '',
@@ -25,12 +26,8 @@ export default class Register extends Component {
     }
 
     register = async() => {
-        const {username, password, type} = this.state;
-        const type_num = type === "dashen" ? 1 : 2
-        try{
-            await registerAPI({username, password, type: type_num})
-            this.props.history.replace("/")
-        }catch(e) {}
+        this.props.register(this.state)
+        this.props.history.replace("/")
     }
 
     toLogin = () => {
@@ -70,3 +67,8 @@ export default class Register extends Component {
         )
     }
 }
+
+export default connect(
+    state => ({}),
+    {register} 
+)(Register)

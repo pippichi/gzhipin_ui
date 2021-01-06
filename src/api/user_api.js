@@ -3,10 +3,10 @@ const prefix = "/api1/"
 
 // export function registerAPI(data){
 //     return axios.request({
-//         url: prefix + "user",
+//         url: prefix + "users",
 //         method: "post",
 //         data
 //     })
 // }
 
-export const registerAPI = (data) => ajax(prefix + "user", data, "POST")
+export const registerAPI = (data) => ajax(prefix + "users", data, "POST")
