@@ -27,7 +27,7 @@ class Register extends Component {
 
     register = async() => {
         this.props.register(this.state)
-        this.props.history.replace("/")
+        // this.props.history.replace("/")
     }
 
     toLogin = () => {
@@ -35,13 +35,15 @@ class Register extends Component {
     }
 
     render() {
-        const {type} = this.state
+        const { type } = this.state
+        const { msg } = this.props.user
         return (
             <div>
                 <NavBar>硅&nbsp;谷&nbsp;直&nbsp;聘</NavBar>
                 <Logo/>
                 <WingBlank>
                     <List>
+                        {msg ? <div className="error-msg">{msg}</div>: null}
                         <WhiteSpace/>
                         <InputItem placeholder="请输入用户名" onChange={val => {this.handleChange("username", val)}}>用户名：</InputItem>
                         <WhiteSpace/>
@@ -69,6 +71,6 @@ class Register extends Component {
 }
 
 export default connect(
-    state => ({}),
+    state => ({user: state.user}),
     {register} 
 )(Register)

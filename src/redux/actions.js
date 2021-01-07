@@ -4,7 +4,7 @@
 同步action
 */
 
-import { AUTH_SUCCESS, ERROR_MSG, CREATE_SUCCESS } from "./action-types"
+import { AUTH_SUCCESS, ERROR_MSG } from "./action-types"
 
 import { registerAPI } from "../api/user_api"
 
@@ -18,6 +18,12 @@ export const register = (user) => {
     confirm_password,
     type} = user
     const type_num = type === "dashen" ? 1 : 2
+    if (password !== confirm_password){
+        return errorMsg("2次密码不一致！")
+    }
+    if (!username){
+        return errorMsg("必须指定用户名!")
+    }
     return async dispatch => {
         const temp = await registerAPI({username, password, type: type_num})
         const res = temp.data

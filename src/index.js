@@ -8,7 +8,7 @@ import Register from "./containers/register/register"
 import Main from "./containers/main/main"
 import Login from "./containers/login/login"
 
-import './index.css'
+import "./assets/css/index.css"
 
 ReactDOM.render((
   <Provider store={store}>
